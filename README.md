@@ -1,3 +1,11 @@
+## Note
+This doesn't support `resizeMode` of the source (pre-zoomed) Image component yet.
+To have a proper animation effect, please render the Image in the original aspect rario. Otherwise, please try either `cover` or `contain`.
+Now landscape images will work with `contain` and portrait images will work with `contain` `resizeMode`
+
+## Try it out
+`https://snack.expo.io/@origamih/animated-image-viewer`
+
 ## Getting Started
 
 ### Installation
