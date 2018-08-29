@@ -28,7 +28,7 @@ componentDidMount () {
       width,
       height
     }
-  );
+  });
 }
 ```
 
