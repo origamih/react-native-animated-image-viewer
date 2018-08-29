@@ -1,0 +1,20 @@
+{
+  "name": "react-native-animated-image-viewer",
+  "version": "1.0.0",
+  "description": "Image viewer with smooth animated zoom in out",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/origamih/react-native-animated-image-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/origamih/react-native-animated-image-viewer/issues"
+  },
+  "keywords": [
+    "react-native",
+    "animated",
+    "image-viewer"
+  ],
+  "author": "Huy Tran <origamih@gmail.com>",
+  "license": "MIT"
+}

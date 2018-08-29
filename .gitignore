@@ -1,0 +1,10 @@
+node_modules/
+.expo/
+npm-debug.*
+yarn-error.*
+**/.DS_Store
+.eslintrc.json
+coverage/
+.DS_Store
+.env
+.env.*
