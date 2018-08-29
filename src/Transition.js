@@ -5,6 +5,9 @@ import { calculateTransformation } from './utils';
 
 const Transition = ({ source, sourceMeasure, destMeasure, animatedValue, isAnimating }) => {
   const transformation = calculateTransformation(sourceMeasure, destMeasure);
+  console.log('source', sourceMeasure)
+  console.log('des', destMeasure)
+  console.log('tran', transformation)
   return (
     <Animated.Image
       style={{
@@ -49,7 +52,7 @@ export const measurePropTypes = {
 };
 
 Transition.propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.shape({uri: PropTypes.string.isRequired}),
   animatedValue: PropTypes.instanceOf(Animated.Value).isRequired,
   isAnimating: PropTypes.bool.isRequired,
   sourceMeasure: PropTypes.shape(measurePropTypes),

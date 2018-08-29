@@ -75,7 +75,7 @@ export default class AnimatedImage extends React.Component {
 
   componentDidMount () {
     const { imageSize, source } = this.props;
-    if (!source) return;
+    if (!source) return this.props.onClose();
     if (imageSize.width && imageSize.height) {
       this._startAnimation(1, this._showImageViewer, 50);
     } else {
@@ -90,6 +90,7 @@ export default class AnimatedImage extends React.Component {
       width: imageWidth,
       height: imageHeight
     };
+    console.log('props', {imageSize, width, height});
     const destMeasure = calculateDestModalImageMeasure(imageSize, {width, height}, swipedY);
 
     const imageViewerStyle = {
@@ -104,10 +105,17 @@ export default class AnimatedImage extends React.Component {
     };
 
     const menuElement = Menu
-      ? <Menu />
+      ? <View style={{
+          position: 'absolute',
+          zIndex: 2,
+          left: 0,
+          top: 0
+        }}>
+          {Menu}
+        </View>
       : <View />;
 
-    if (!source) return null;
+    if (!source) return <View />;
 
     return (
       <View style={{flex: 1, backgroundColor: 'transparent'}}>

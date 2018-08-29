@@ -19,14 +19,14 @@ import { Image } from 'react-native';
 ...
 
 _imageSize = {
-  imageWidth: null,
-  imageHeight: null
+  width: 0,
+  height: 0
 };
 componentDidMount () {
   Image.getSize(source, (width, height) => {
     this._imageSize = {
-      imageWidth: width,
-      imageHeight: height
+      width,
+      height
     }
   );
 }
@@ -41,10 +41,10 @@ import React from 'react';
 
 
 _sourceMeasure = {
-  width: null,
-  height: null,
-  pageX: null,
-  pageY: null
+  width: 0,
+  height: 0,
+  pageX: 0,
+  pageY: 0
 }
 _showImage = () => {
   this.image.measure((x, y, width, height, pageX, pageY) => {
@@ -71,7 +71,7 @@ I don't use state for `_imageSize` and `_sourceMeasure`, this is more optimized 
 - Then show the Image in a `transparent Modal`:
 
 ```javascript
-import { Modal, Image, TouchableOpacity } from 'react-native';
+import { Modal, Image, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 
 export default class App extends React.Component {
@@ -79,14 +79,14 @@ export default class App extends React.Component {
     visible: false
   }
   _imageSize = {
-    imageWidth: null,
-    imageHeight: null
+    width: 0,
+    height: 0
   };
   _sourceMeasure = {
-    width: null,
-    height: null,
-    pageX: null,
-    pageY: null
+    width: 0,
+    height: 0,
+    pageX: 0,
+    pageY: 0
   }
   _showImageModal = () => this.setState({ visible: true });
   _hideImageModal = () => this.setState({ visible: false });
@@ -103,12 +103,12 @@ export default class App extends React.Component {
     });
   };
   componentDidMount () {
-    Image.getSize(source, (width, height) => {
+    Image.getSize(source.uri, (width, height) => {
       this._imageSize = {
-        imageWidth: width,
-        imageHeight: height
+        width,
+        height
       }
-    );
+    });
   }
   render () {
     return (
@@ -120,7 +120,7 @@ export default class App extends React.Component {
           <Image source={source} style={{width: 100, height: 100}}/>
         </TouchableOpacity>
 
-        <Modal visible={true} transparent onRequestClose={this._requestClose}>
+        <Modal visible={this.state.visible} transparent onRequestClose={this._requestClose}>
           <AnimatedImage
             ref={imageModal => (this.imageModal = imageModal)}
             source={source}
