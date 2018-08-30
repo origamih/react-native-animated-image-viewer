@@ -29,7 +29,7 @@ export default class AnimatedImage extends React.Component {
   }
 
   static defaultProps = {
-    originalPosition: {
+    sourceMeasure: {
       pageX: 0,
       pageY: 0,
       width: 1,
@@ -39,7 +39,8 @@ export default class AnimatedImage extends React.Component {
       width: 1,
       height: 1
     },
-    Menu: null
+    Menu: null,
+    translucentStatusBar: true
   }
 
   animatedValue = new Animated.Value(0);
@@ -85,13 +86,16 @@ export default class AnimatedImage extends React.Component {
 
   render () {
     const { isAnimating, swipedY, showMenu, imageHeight, imageWidth } = this.state;
-    const { source, sourceMeasure, Menu } = this.props;
+    const { source, sourceMeasure, Menu, translucentStatusBar } = this.props;
     const imageSize = {
       width: imageWidth,
       height: imageHeight
     };
-    console.log('props', {imageSize, width, height});
+
     const destMeasure = calculateDestModalImageMeasure(imageSize, {width, height}, swipedY);
+    const sourcePageY = (translucentStatusBar && isAndroid)
+      ? sourceMeasure.pageY - StatusBar.currentHeight
+      : sourceMeasure.pageY;
 
     const imageViewerStyle = {
       position: 'absolute',
@@ -122,7 +126,7 @@ export default class AnimatedImage extends React.Component {
         <StatusBar
           backgroundColor='black'
           barStyle='light-content'
-          translucent={false}
+          translucent={!isAndroid}
           hidden={!isAndroid}
         />
 
@@ -139,7 +143,7 @@ export default class AnimatedImage extends React.Component {
           source={source}
           animatedValue={this.animatedValue}
           destMeasure={destMeasure}
-          sourceMeasure={sourceMeasure}
+          sourceMeasure={{...sourceMeasure, pageY: sourcePageY}}
           isAnimating={isAnimating}
         />
 
@@ -181,5 +185,6 @@ AnimatedImage.propTypes = {
   sourceMeasure: PropTypes.shape(measurePropTypes),
   imageSize: PropTypes.shape(imageSizePropTypes),
   Menu: PropTypes.element,
-  animationDuration: PropTypes.number
+  animationDuration: PropTypes.number,
+  translucentStatusBar: PropTypes.bool
 };

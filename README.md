@@ -1,8 +1,12 @@
 ## Note
+### `resizeMode`
 This doesn't support all `resizeMode` of the source (pre-zoomed) Image component yet.
 To have a proper animation effect, please render the Image in the original aspect rario.
 Otherwise, please try either `cover` or `contain`.
 Now landscape images will work with `resizeMode: contain` and portrait images will work with `resizeMode: cover`
+
+### Status Bar on Android
+[There is a famoust known issue](https://github.com/facebook/react-native/issues/7474) about status bar isn't hidden on Adnroid Modal. So I need a props to know if the source (pre-zoomed) image is rendered in `translucent` status bar or not. Default will be `true` to be consistent with iOS.
 
 ## Try it out
 https://snack.expo.io/@origamih/animated-image-viewer
@@ -154,7 +158,7 @@ export default class App extends React.Component {
 | imageSize              | object<br>`{width: number, height: number}`                                            | no       | Actual image size                                                                                                                      |                                                           |
 | Menu                   | React Element                                                                          | no       | Header menu for the zoomed in image                                                                                                    | `null`                                                    |
 | animationDuration      | number                                                                                 | no       | Animation duration                                                                                                                     | `200`                                                     |
-
+| translucentStatusBar   | bool                                                                                   | no       | Android only. Used to calculated the top padding caused by non-translucent status bar                                                  | `true`                                                    |
 
 ### Methods
 | name                   | description                                                                                                     |

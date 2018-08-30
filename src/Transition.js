@@ -5,9 +5,6 @@ import { calculateTransformation } from './utils';
 
 const Transition = ({ source, sourceMeasure, destMeasure, animatedValue, isAnimating }) => {
   const transformation = calculateTransformation(sourceMeasure, destMeasure);
-  console.log('source', sourceMeasure)
-  console.log('des', destMeasure)
-  console.log('tran', transformation)
   return (
     <Animated.Image
       style={{
