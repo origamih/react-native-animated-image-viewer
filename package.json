@@ -1,6 +1,6 @@
 {
   "name": "react-native-animated-image-viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Image viewer with smooth animated zoom in out",
   "main": "index.js",
   "repository": {

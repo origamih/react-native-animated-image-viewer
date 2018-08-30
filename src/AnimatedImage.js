@@ -17,7 +17,7 @@ const isAndroid = Platform.select({
   ios: false
 });
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('screen');
 
 export default class AnimatedImage extends React.Component {
   state = {
