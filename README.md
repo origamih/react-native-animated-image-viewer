@@ -1,3 +1,4 @@
+![](https://media.giphy.com/media/628qktJyimaNYGU22U/giphy.gif)
 ## Note
 ### `resizeMode`
 This doesn't support all `resizeMode` of the source (pre-zoomed) Image component yet.
